@@ -1,0 +1,5 @@
+# Header: trajectory of angry bird. 
+
+ x [m]   y [m]   t [s] 
+ 0.000   0.000   0.000 
+ 2.227   2.178   0.100 

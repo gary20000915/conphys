@@ -1,0 +1,136 @@
+{\rtf1\ansi\ansicpg950\cocoartf2706
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue0;\red69\green60\blue204;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0\cname textColor;\cssrgb\c0\c0\c0;\cssrgb\c34510\c33725\c83922;
+}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf2 \uc0\u23492 \u20214 \u20154 : Pai-hsien Jennifer Hsu <pjhsu@phys.nthu.edu.tw>\
+\uc0\u27161 \u38988 : Re: Slides-only Group Meeting next Monday (Oct 31)\
+\uc0\u26085 \u26399 : 2022\u24180 11\u26376 1\u26085  GMT+8 16:54:14\
+\uc0\u25910 \u20214 \u20154 : \u26519 \u31077 \u28304  <xylin132@gmail.com>\
+\uc0\u21103 \u26412 : YunJu <yunju@cern.ch>, Yuan-Chang Chen <yuan-chang.chen@cern.ch>,  \u24373 \u22825 \u36203  <hertz.tera@gmail.com>,  \u38515 \u31435 \u35946  <chenlihao0@gmail.com>,  Gary Peter <gary20000915@gmail.com>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs24 \cf2 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 Hi Siang-Yuan, please see below,\
+\
+On Mon, Oct 31, 2022 at 11:59 PM \uc0\u26519 \u31077 \u28304  <xylin132@gmail.com> wrote:\
+\pard\pardeftab720\partightenfactor0
+\cf4 \strokec4 \
+Hi all,\
+\
+Thanks for the tips and feedback. Apologies for the ambiguity, I meant to distinguish HWW events from WWl\uc0\u957 l\u957  events, so I named it real (not background) and background truth event. I think I may have some more inconsistencies in naming my input data type throughout my slides, perhaps there is a conventional nomenclature I could follow? I'll be sure to pay more attention.\
+\pard\pardeftab720\partightenfactor0
+\cf3 \strokec3 \
+Not background = Signal. We use "signal" and "background" to refer to\
+simulation (MC) data. We also use the word "process", e.g. WW process,\
+ttbar process, etc.\
+\
+The current MC we're producing and using are the so-called truth\
+samples, which contain information of mother particles and 4 vectors\
+of invisible particles (neutrinos).\
+\
+For collision data (NOT simulation) we call it "real data".\
+\
+The "default" MC for comparing real data (experimental results) with\
+theoretical prediction (i.e. simulation/MC) is the reconstructed\
+(reco) MC. Reco MC contains the same information as real data (what\
+are seen by detectors, and the resulting objects (e/mu/MET, etc.)\
+_reconstructed_ from detector information).\
+\
+\pard\pardeftab720\partightenfactor0
+\cf4 \strokec4 \
+For 2) I am currently working on implementing selection cuts in my current code, and then apply it to the readily available HWW and WWl\uc0\u957 l\u957  input data. I'd like to know whether testing with a combination of the two types of input is a sensible approach to testing the code, with running real data as the eventual goal.\
+\pard\pardeftab720\partightenfactor0
+\cf3 \strokec3 \
+So you mean a mixture of signal and WW background. It makes sense to\
+me. You can see in Alan's recent paper\
+(https://arxiv.org/pdf/2209.13990.pdf \'a0Sec. 8.2) the authors also\
+investigate the results with mixtures of HWW and WW (See FIg. 7).\
+\
+Best,\
+Jennifer\
+\pard\pardeftab720\partightenfactor0
+\cf4 \strokec4 \
+Many thanks,\
+Siang-Yuan\
+\
+On 10/31/22 23:27, Pai-hsien Jennifer Hsu wrote:\
+\
+Hi all,\
+\
+Let me comment on some of your questions. We can iterate on other parts later.\
+\
+@Tien-Ho:\
+1) Do you still get 4x more ggF events if you produce a cutflow from\
+your locally-generated file (after Trial 1)?\
+2) How do you specify the path of ggF when you print cutflows? If you\
+use this one https://gitlab.cern.ch/atlas-physics/higgs/hww/HWWAnalysisCode/-/blob/master/share/config/visualization/processes/ggF/ggF-cutflow-processes-default.txt\
+Can you modify the path of ggF to\
+/sig/$(channel)/$(campaign)/ggf/PowPy8/STXS and see if that changes?\
+\
+Note:\
+1) The error on fakes is probably due to the fact that you only use\
+signal samples. Set "doDDfakes" to false in your initialize config\
+since you are debugging only for ggF\
+2) You can examine the sample folder structure in the output from the\
+analyze step using ROOT or tqroot. Check out the slides from the CAF\
+tutorial last year\
+https://indico.cern.ch/event/1017271/timetable/?view=standard#31-central-caf-concepts-and-an\
+If that doesn't work, you can send an email to the qframeowork list\
+asking for updated instructions.\
+\
+\
+@Yuan-Yen Peng\
+Can you remove "--outputDAODFile=test.pool.root" in the command and try again?\
+\
+FYI this TWiki may be helpful:\
+https://twiki.cern.ch/twiki/bin/view/PanDA/PandaAthena#options (see\
+also the link to the latest document on the top of the TWiki)\
+\
+@Siang-Yuan\
+1) Can you explain what you mean by "can take real event"? \'a0By 'real'\
+do you mean 'reco' (reconstructed) data?\
+2) What do you mean by "mixed event sample"? Mixing signal and\
+background? Mixing truth and reco?\
+\
+Note:\
+1) Yes the selection cuts from the HWW publication correspond to how\
+we select events that are signal like from real data and reconstructed\
+MC (when no Truth info available).\
+2) You can check the TWiki above (or the link to the latest Panda\
+Guide from the TWiki). There's a way to run a Grid job in a "debug"\
+mode, which will save more details in the output log files.\
+\
+Best,\
+Jennifer\
+\
+On Fri, Oct 28, 2022 at 9:03 AM Pai-hsien Jennifer Hsu\
+<pjhsu@phys.nthu.edu.tw> wrote:\
+\
+Dear all,\
+\
+I won't be able to hold the group meeting next Monday (Oct 31st) so we\
+won't meet and discuss. As before, I've created an indico link\
+https://indico.cern.ch/event/1216305/ \'a0Please upload a few slides\
+summarizing your progress by 5PM next Monday.\
+\
+Best regards,\
+Jennifer\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf3 \strokec3 \
+\
+-- \
+Pai-hsien Jennifer Hsu\
+Associate Professor\
+Department of Physics\
+National Tsing Hua University\
+Hsinchu, Taiwan\
+}
