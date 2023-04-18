@@ -37,20 +37,6 @@ class Integrator:
             area += dx * f(xn)
         return area
 
-    def trap(self, a=-1, b=1, N=int(10_000)):
-        """
-        Assume a < b
-        """
-        f = self.f
-        dx = (b - a) / int(N)
-        area = 0
-        for n in range(int(N)):
-            xn = a + n * dx
-            u = f(xn + dx)
-            l = f(xn)
-            area += (u + l) * dx * 0.5
-        return area
-
     def trapz(self, a=-1, b=1, N=int(10_000)):
         """
         Assume a < b
@@ -86,5 +72,9 @@ if __name__ == "__main__":
         return math.sqrt(1 - x**2)
 
     integrate = Integrator(func=hcirc)
-    area = integrate.simp(a=-1, b=1, N=int(1e5))
-    print(2 * area)
+    area_mid= integrate.midpoint(a=-1, b=1, N=int(1e5))
+    area_trapz = integrate.trapz(a=-1, b=1, N=int(1e5))
+    area_simp = integrate.simp(a=-1, b=1, N=int(1e5))
+    print('Midpoint:', 2 * area_mid)
+    print('Trapz   :', 2 * area_trapz)
+    print('Simpson :', 2 * area_simp)
