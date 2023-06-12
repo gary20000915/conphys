@@ -196,5 +196,4 @@ def plot_trajectory(x: List[float], y: List[float], show=argv.show_plot):
 
 
 if __name__ == "__main__":
-
     play()
